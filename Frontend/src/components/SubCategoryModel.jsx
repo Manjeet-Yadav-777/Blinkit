@@ -41,10 +41,24 @@ const SubCategoryModel = ({ close }) => {
     });
   };
 
+  const handleCategorySelected = async (categoryId) => {
+    const index = data.category.findIndex((el) => el._id === categoryId);
+    data.category.splice(index, 1);
+    setData((prev) => {
+      return {
+        ...prev,
+      };
+    });
+  };
+
+  const handleSubmit = async () => {
+    
+  };
+
   console.log("sub data", data);
 
   return (
-    <div className="fixed z-99 w-full top-0 bottom-0 left-0 right-0 bg-neutral-900/70 flex items-center justify-center">
+    <div className="fixed z-99 scroll-auto w-full top-0 bottom-0 left-0 right-0 bg-neutral-900/70 flex items-center justify-center">
       <div className="bg-white max-w-4xl w-[90%] flex gap-5 flex-col p-4 lg:px-5 rounded">
         <div className="flex">
           <h1 className="text-xl font-bold text-gray-700">Sub Category</h1>
@@ -56,7 +70,7 @@ const SubCategoryModel = ({ close }) => {
           </button>
         </div>
 
-        <form className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <label className="text-xl font-semibold text-gray-600">Name</label>
             <input
@@ -69,7 +83,6 @@ const SubCategoryModel = ({ close }) => {
               required
             />
           </div>
-
           <div className="flex flex-col gap-2">
             <p className="text-xl font-semibold text-gray-600">Image</p>
             <div className="flex lg:flex-row flex-col lg:items-center gap-10">
@@ -99,8 +112,33 @@ const SubCategoryModel = ({ close }) => {
               </label>
             </div>
           </div>
+          <div className="">
+            <p className="text-xl font-semibold text-gray-600">
+              Select Category
+            </p>
+          </div>
+          {data && (
+            <div className="flex flex-wrap gap-4">
+              {data.category.map((cat, index) => {
+                return (
+                  <p
+                    className="shadow-md flex items-center justify-center gap-1 px-2 py-1 text-md"
+                    key={cat._id + "selectedValue"}
+                  >
+                    {cat.name}
 
-          <div className="my-5">
+                    <button
+                      className="cursor-pointer"
+                      onClick={() => handleCategorySelected(cat._id)}
+                    >
+                      <IoClose />
+                    </button>
+                  </p>
+                );
+              })}
+            </div>
+          )}
+          <div className="">
             <select
               className="p-2 border w-full border-neutral-400 rounded outline-none text-gray-900 font-semibold"
               name="category"
@@ -134,6 +172,12 @@ const SubCategoryModel = ({ close }) => {
               })}
             </select>
           </div>
+          <button
+            type="submit"
+            className="bg-green-700 text-white py-2 font-bold cursor-pointer hover:bg-green-800"
+          >
+            ADD SUBCATEGORY
+          </button>{" "}
         </form>
       </div>
     </div>
