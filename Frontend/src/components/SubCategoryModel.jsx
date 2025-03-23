@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import UploadImage from "../utils/UploadImage";
 import { useSelector } from "react-redux";
+import Axios from "../utils/Axios";
+import SummeryApi from "../common/SummeryApi";
+import toast from "react-hot-toast";
+import AxiosToastError from "../utils/AxiosToastError";
 
 const SubCategoryModel = ({ close }) => {
   const allCategory = useSelector((state) => state.product.allCategory);
+  useEffect(() => {
+    const sabhi = allCategory;
+  }, []);
   // console.log(allCategory);
 
   const [data, setData] = useState({
@@ -49,7 +56,26 @@ const SubCategoryModel = ({ close }) => {
     }));
   };
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await Axios({
+        ...SummeryApi.createSubCategory,
+        data: data,
+      });
+
+      const { data: responseData } = response;
+
+      if (responseData.success) {
+        toast.success(responseData.message);
+        if (close) {
+          close();
+        }
+      }
+    } catch (error) {
+      AxiosToastError(error);
+    }
+  };
 
   console.log("sub data", data);
 
@@ -152,7 +178,7 @@ const SubCategoryModel = ({ close }) => {
                 });
               }}
             >
-              <option disabled value="">
+              <option selected value="">
                 Select Category
               </option>
 

@@ -8,6 +8,7 @@ import connectDB from "./config/connectDB.js";
 import userRouter from "./routes/userRoute.js";
 import categoryRouter from "./routes/categoryRoute.js";
 import uploadRouter from "./routes/uploadRouter.js";
+import subCategoryRouter from "./routes/subCategoryRoute.js";
 dotenv.config();
 
 const app = express();
@@ -32,6 +33,7 @@ const PORT = 5000 || process.env.PORT;
 app.use("/api/user", userRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/file", uploadRouter);
+app.use("/api/subcategory", subCategoryRouter);
 
 connectDB().then(() => {
   app.listen(PORT, () => {
