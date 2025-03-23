@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const SubCategoryModel = ({ close }) => {
   const allCategory = useSelector((state) => state.product.allCategory);
+  // console.log(allCategory);
 
   const [data, setData] = useState({
     name: "",
@@ -41,19 +42,14 @@ const SubCategoryModel = ({ close }) => {
     });
   };
 
-  const handleCategorySelected = async (categoryId) => {
-    const index = data.category.findIndex((el) => el._id === categoryId);
-    data.category.splice(index, 1);
-    setData((prev) => {
-      return {
-        ...prev,
-      };
-    });
+  const handleCategorySelected = (categoryId) => {
+    setData((prev) => ({
+      ...prev,
+      category: prev.category.filter((el) => el._id !== categoryId),
+    }));
   };
 
-  const handleSubmit = async () => {
-    
-  };
+  const handleSubmit = async () => {};
 
   console.log("sub data", data);
 
