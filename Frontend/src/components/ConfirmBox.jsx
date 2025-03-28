@@ -26,7 +26,11 @@ const ConfirmBox = ({ close, refresh, confirm }) => {
             Cancel
           </button>
           <button
-            onClick={confirm}
+            onClick={() => {
+              confirm();
+              refresh();
+              close();
+            }}
             className="border px-5 py-1 rounded border-red-500 hover:bg-red-500 hover:text-white text-red-500 font-semibold cursor-pointer"
           >
             Confirm

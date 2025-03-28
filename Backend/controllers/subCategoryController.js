@@ -35,3 +35,48 @@ export const addSubCategory = async (req, res) => {
     });
   }
 };
+
+export const getSubCategory = async (req, res) => {
+  try {
+    const data = await subCategoryModel
+      .find()
+      .sort({ createdAt: -1 })
+      .populate("category");
+
+    return res.json({
+      message: "Sub Category Data",
+      data: data,
+      success: true,
+      error: false,
+    });
+  } catch (error) {
+    return res.json({
+      message: error.message || error,
+      success: false,
+      error: true,
+    });
+  }
+};
+
+export const deleteSubCategory = async (req, res) => {
+  try {
+    const { _id } = req.body;
+
+    console.log(_id);
+
+    const deleteCate = await subCategoryModel.findByIdAndDelete(_id);
+
+    return res.json({
+      message: "Sub Category deleted",
+      data: deleteCate,
+      success: true,
+      error: false,
+    });
+  } catch (error) {
+    return res.json({
+      message: error.message || error,
+      success: false,
+      error: true,
+    });
+  }
+};

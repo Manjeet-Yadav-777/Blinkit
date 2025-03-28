@@ -7,7 +7,7 @@ import SummeryApi from "../common/SummeryApi";
 import toast from "react-hot-toast";
 import AxiosToastError from "../utils/AxiosToastError";
 
-const SubCategoryModel = ({ close }) => {
+const SubCategoryModel = ({ close, fetchSubCategory }) => {
   const allCategory = useSelector((state) => state.product.allCategory);
   useEffect(() => {
     const sabhi = allCategory;
@@ -70,6 +70,7 @@ const SubCategoryModel = ({ close }) => {
         toast.success(responseData.message);
         if (close) {
           close();
+          fetchSubCategory();
         }
       }
     } catch (error) {
@@ -196,6 +197,7 @@ const SubCategoryModel = ({ close }) => {
           </div>
           <button
             type="submit"
+            onClick={() => fetchSubCategory()}
             className="bg-green-700 text-white py-2 font-bold cursor-pointer hover:bg-green-800"
           >
             ADD SUBCATEGORY

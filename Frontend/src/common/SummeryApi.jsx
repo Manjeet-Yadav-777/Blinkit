@@ -80,6 +80,16 @@ const SummeryApi = {
     url: "/api/subcategory/create",
     method: "post",
   },
+
+  getSubCategory: {
+    url: "/api/subcategory/get",
+    method: "get",
+  },
+
+  deleteSubCategory: {
+    url: "/api/subcategory/delete",
+    method: "delete",
+  },
 };
 
 export default SummeryApi;

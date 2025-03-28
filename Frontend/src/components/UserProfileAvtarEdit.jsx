@@ -34,11 +34,15 @@ const UserProfileAvtarEdit = ({ close }) => {
         data: formData,
       });
 
+      console.log(response);
+
       const { data: responseData } = response;
       dispatch(updateAvtar(responseData.data.avtar));
-      console.log(response);
+      console.log("API Response:", response);
+      console.log("Avatar Path:", response?.data?.data?.avtar);
     } catch (error) {
       AxiosToastError(error);
+      console.log(error);
     } finally {
       setLoading(false);
     }
