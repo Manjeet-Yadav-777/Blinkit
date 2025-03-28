@@ -2,18 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Product = () => {
-  const [data, setData] = useState({
-    name: "",
-    image: [],
-    category: [],
-    subCategory: [],
-    unit: [],
-    stock: "",
-    price: "",
-    disscount: "",
-    description: "",
-    more_details: {},
-  });
 
   return (
     <div>
