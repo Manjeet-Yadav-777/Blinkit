@@ -50,11 +50,6 @@ const productSchema = new mongoose.Schema(
       default: "",
     },
 
-    more_details: {
-      type: Object,
-      default: {},
-    },
-
     publish: {
       type: Boolean,
       default: true,

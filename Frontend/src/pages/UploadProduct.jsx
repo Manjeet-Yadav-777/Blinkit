@@ -4,6 +4,10 @@ import UploadImage from "../utils/UploadImage";
 import Loading from "../components/Loading";
 import { IoClose } from "react-icons/io5";
 import { useSelector } from "react-redux";
+import AxiosToastError from "../utils/AxiosToastError";
+import Axios from "../utils/Axios";
+import SummeryApi from "../common/SummeryApi";
+import toast from "react-hot-toast";
 
 const UploadProduct = () => {
   const [data, setData] = useState({
@@ -14,7 +18,7 @@ const UploadProduct = () => {
     unit: [],
     stock: "",
     price: "",
-    disscount: "",
+    discount: "",
     description: "",
   });
 
@@ -93,6 +97,33 @@ const UploadProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await Axios({
+        ...SummeryApi.createProduct,
+        data: data,
+      });
+
+      const { data: responseData } = response;
+
+      if (responseData.success) {
+        toast.success(responseData.message);
+
+        setData({
+          name: "",
+          image: [],
+          category: [],
+          subCategory: [],
+          unit: [],
+          stock: "",
+          price: "",
+          discount: "",
+          description: "",
+        });
+      }
+    } catch (error) {
+      AxiosToastError(error);
+    }
   };
 
   console.log(data);
@@ -354,9 +385,9 @@ const UploadProduct = () => {
             Disscount :
           </label>
           <input
-            id="disscount"
-            name="disscount"
-            value={data.disscount}
+            id="discount"
+            name="discount"
+            value={data.discount}
             onChange={handleChange}
             className="border  text-gray-900 font-semibold h-10 outline-nonebg-blue-50 bg-blue-50 rounded border-gray-500 px-5"
             placeholder="Enter Product Stock"
