@@ -8,7 +8,7 @@ import { setUserDetails } from "./store/userSlice";
 import { useDispatch } from "react-redux";
 import SummeryApi from "./common/SummeryApi";
 import Axios from "./utils/Axios";
-import { setAllCategory } from "./store/ProductSlice";
+import { setAllCategory, setAllSubCategory } from "./store/ProductSlice";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -40,9 +40,31 @@ const App = () => {
     }
   };
 
+  const fetchSubCategory = async () => {
+    try {
+      setLoading(true);
+
+      const resposne = await Axios({
+        ...SummeryApi.getSubCategory,
+      });
+
+      const { data: responseData } = resposne;
+
+      if (responseData.success) {
+        dispatch(setAllSubCategory(responseData.data));
+        // setCategoryData(responseData.data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchUser();
     fetchCategory();
+    fetchSubCategory();
   }, []);
 
   return (
