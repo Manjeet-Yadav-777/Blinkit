@@ -15,6 +15,7 @@ const productSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.ObjectId,
         ref: "category",
+        required: true,
       },
     ],
 
@@ -22,6 +23,7 @@ const productSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.ObjectId,
         ref: "subCategory",
+        required: true,
       },
     ],
 
@@ -37,7 +39,7 @@ const productSchema = new mongoose.Schema(
 
     price: {
       type: Number,
-      defualt: null,
+      default: null,
     },
 
     discount: {

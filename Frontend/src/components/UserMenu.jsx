@@ -82,6 +82,7 @@ const UserMenu = ({ close }) => {
 
         {isAdmin(user.role) && (
           <Link
+            onClick={() => handleRef()}
             to={"/dashboard/subcategory"}
             className="px-2 py-1 hover:text-white hover:bg-green-600"
           >
@@ -91,6 +92,7 @@ const UserMenu = ({ close }) => {
 
         {isAdmin(user.role) && (
           <Link
+            onClick={() => handleRef()}
             to={"/dashboard/upload-product"}
             className="px-2 py-1 hover:text-white hover:bg-green-600"
           >
@@ -100,6 +102,7 @@ const UserMenu = ({ close }) => {
 
         {isAdmin(user.role) && (
           <Link
+            onClick={() => handleRef()}
             to={"/dashboard/product-admin"}
             className="px-2 py-1 hover:text-white hover:bg-green-600"
           >
@@ -108,6 +111,7 @@ const UserMenu = ({ close }) => {
         )}
 
         <Link
+          onClick={() => handleRef()}
           to={"/dashboard/myorders"}
           className="px-2 py-1 hover:text-white hover:bg-green-600"
         >
@@ -115,6 +119,7 @@ const UserMenu = ({ close }) => {
         </Link>
 
         <Link
+          onClick={() => handleRef()}
           to={"/dashboard/address"}
           className="px-2 py-1 hover:text-white hover:bg-green-600"
         >

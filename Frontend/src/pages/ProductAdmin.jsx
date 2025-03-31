@@ -10,6 +10,7 @@ const ProductAdmin = () => {
   const [productData, setProductData] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [showPrivious, setShowPrivious] = useState(false);
 
   const fetchProductData = async () => {
     try {
@@ -39,6 +40,26 @@ const ProductAdmin = () => {
     fetchProductData();
   }, [page]);
 
+  const handlePrivious = async () => {
+    console.log(page);
+
+    if (page == 0) {
+      setPage(1);
+    } else {
+      setPage(page - 1);
+    }
+
+    console.log(page);
+
+    if (page == 1) {
+      setShowPrivious(false);
+    }
+  };
+
+  useEffect(() => {
+    handlePrivious();
+  }, []);
+
   return (
     <div>
       {productData.length == 0 ? (
@@ -50,19 +71,21 @@ const ProductAdmin = () => {
             </h1>
           </div>
 
-          <button
-            onClick={() => setPage(page - 1)}
-            className="cursor-pointer bg-red-500 text-white px-5 py-1 font-bold hover:bg-red-700"
-          >
-            Privious
-          </button>
+          {showPrivious && (
+            <button
+              onClick={handlePrivious}
+              className="cursor-pointer rounded bg-red-500 text-white px-5 py-1 font-bold hover:bg-red-700"
+            >
+              Privious
+            </button>
+          )}
         </div>
       ) : (
         <div>
           <div className="bg-blue-50 min-h-[100vh] h-auto">
             <div className="lg:h-16 h-14 lg:w-[80vw] bg-white px-5 w-full shadow-md lg:pl-10 lg:pr-16 flex justify-between items-center">
               <h1 className="lg:text-2xl text-xl font-bold text-gray-500">
-                All Produts
+                All Products
               </h1>
             </div>
 
@@ -80,18 +103,25 @@ const ProductAdmin = () => {
               })}
             </div>
 
-            <div className="flex py-5 justify-between items-center w-[69vw] ml-5">
+            <div className="flex py-5 justify-between items-center w-[80vw] lg:w-[69vw] ml-5">
               <button
-                onClick={() => setPage(page - 1)}
-                className="cursor-pointer bg-red-500 text-white px-5 py-1 font-bold hover:bg-red-700"
+                onClick={handlePrivious}
+                className="cursor-pointer rounded bg-red-500 text-white px-5 py-1 font-bold hover:bg-red-700"
               >
                 Privious
               </button>
 
               {productData.length > 0 && (
                 <button
-                  onClick={() => setPage(page + 1)}
-                  className="cursor-pointer bg-green-500 font-bold text-white px-5 py-1 hover:bg-green-700"
+                  onClick={() => {
+                    console.log(page);
+
+                    setPage(page + 1);
+                    setShowPrivious(true);
+                    window.scrollTo({ top: 0 });
+                    console.log(page);
+                  }}
+                  className="cursor-pointer rounded bg-green-500 font-bold text-white px-5 py-1 hover:bg-green-700"
                 >
                   Next
                 </button>

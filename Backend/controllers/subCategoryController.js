@@ -1,4 +1,5 @@
 import subCategoryModel from "../models/subCategoryModel.js";
+import productModel from "../models/productModel.js";
 
 export const addSubCategory = async (req, res) => {
   try {
@@ -62,7 +63,7 @@ export const deleteSubCategory = async (req, res) => {
   try {
     const { _id } = req.body;
 
-    console.log(_id);
+    // await productModel.deleteMany({ category: _id });
 
     const cheakProduct = await productModel.countDocuments({ category: _id });
 

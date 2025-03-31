@@ -47,7 +47,7 @@ const ProductCardAdmin = ({ data, refresh }) => {
           setDeletePro(data?._id);
           setIsOpen(true);
         }}
-        className="bg-red-500 w-full text-white my-3 py-1 cursor-pointer"
+        className="bg-red-500 rounded w-full text-white my-3 py-1 cursor-pointer"
       >
         Delete
       </button>

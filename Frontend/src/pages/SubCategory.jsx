@@ -39,6 +39,7 @@ const SubCategory = () => {
 
   const handleDelete = async () => {
     try {
+      setLoading(true);
       const response = await Axios({
         ...SummeryApi.deleteSubCategory,
         data: { _id: deleteSub },
@@ -53,6 +54,8 @@ const SubCategory = () => {
       }
     } catch (error) {
       AxiosToastError(error);
+    } finally {
+      setLoading(true);
     }
   };
 
@@ -78,39 +81,39 @@ const SubCategory = () => {
       </div>
 
       {data.length > 0 ? (
-        <div>
+        <div className="w-full">
           <table width={"100%"} border={"1"} className="mt-5">
-            <th className="flex justify-between gap-1 px-4 pr-20">
+            <th className="flex justify-between gap-1 px-4 lg:pr-20">
               <td width={"30%"} className="bg-black text-white">
-                Name
+                <p className="text-sm lg:text-lg">Name</p>
               </td>
-              <td width={"20%"} className="bg-black text-white ">
-                Image
+              <td width={"20%"} className="bg-black text-white">
+                <p className="text-sm lg:text-lg">Image</p>
               </td>
               <td width={"45%"} className="bg-black text-white ">
-                Category
+                <p className="text-sm lg:text-lg">Category</p>{" "}
               </td>
               <td width={"10%"} className="bg-black text-white ">
-                Delete
+                <p className="text-sm lg:text-lg">Delete</p>{" "}
               </td>
             </th>
 
             {data.map((item, index) => (
               <tr
-                className="flex  justify-between gap-1 mx-4 mr-20"
+                className="flex  justify-between gap-1 mx-4 lg:mr-20"
                 key={index}
               >
                 <td
-                  className="flex justify-center items-center border font-semibold"
+                  className="flex justify-center items-center border font-semibold px-1"
                   width={"30%"}
                 >
-                  {item.name}
+                  <p className="text-sm"> {item.name}</p>
                 </td>
                 <td
                   width={"20%"}
                   className="flex justify-center items-center border"
                 >
-                  <img src={item.image} alt={item.name} className=" w-8" />
+                  <img src={item.image} alt={item.name} className="w-8 mt-2" />
                 </td>
                 <td
                   width={"45%"}

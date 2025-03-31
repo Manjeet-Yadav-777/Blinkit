@@ -99,12 +99,24 @@ export const deleteCategory = async (req, res) => {
       category: _id,
     });
 
-    // Check if category is used in products
-    const cheakProduct = await productModel.countDocuments({ category: _id });
-
-    if (cheakSubCategory > 0 || cheakProduct > 0) {
+    if (cheakSubCategory > 0) {
       return res.json({
-        message: "Category is in use",
+        message: "Category in is use",
+        success: false,
+        error: true,
+      });
+    }
+
+    const checkSubCategory = await subCategoryModel.countDocuments({
+      category: _id,
+    });
+
+    // Check if category is used in products
+    const checkProduct = await productModel.countDocuments({ category: _id });
+
+    if (checkSubCategory > 0 || checkProduct > 0) {
+      return res.status(400).json({
+        message: "Category is in use and cannot be deleted",
         success: false,
         error: true,
       });
