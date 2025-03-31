@@ -40,35 +40,66 @@ const ProductAdmin = () => {
   }, [page]);
 
   return (
-    <div className="bg-blue-50 min-h-[100vh] h-auto">
-      <div className="lg:h-16 h-14 lg:w-[80vw] bg-white px-5 w-full shadow-md lg:pl-10 lg:pr-16 flex justify-between items-center">
-        <h1 className="lg:text-2xl text-xl font-bold text-gray-500">
-          All Produts
-        </h1>
-      </div>
+    <div>
+      {productData.length == 0 ? (
+        <div className="px-10">
+          <div className=" h-[70vh] w-[69vw] flex justify-center items-center">
+            <h1 className="text-3xl font font-semibold text-gray-500">
+              {" "}
+              No More Products !
+            </h1>
+          </div>
 
-      {loading && <Loading />}
+          <button
+            onClick={() => setPage(page - 1)}
+            className="cursor-pointer bg-red-500 text-white px-5 py-1 font-bold hover:bg-red-700"
+          >
+            Privious
+          </button>
+        </div>
+      ) : (
+        <div>
+          <div className="bg-blue-50 min-h-[100vh] h-auto">
+            <div className="lg:h-16 h-14 lg:w-[80vw] bg-white px-5 w-full shadow-md lg:pl-10 lg:pr-16 flex justify-between items-center">
+              <h1 className="lg:text-2xl text-xl font-bold text-gray-500">
+                All Produts
+              </h1>
+            </div>
 
-      <div className="flex gap-8 p-5 flex-wrap">
-        {productData.map((d, index) => {
-          return <ProductCardAdmin data={d} />;
-        })}
-      </div>
+            {loading && <Loading />}
 
-      <div className="flex py-5 justify-between items-center w-[69vw] ml-5">
-        <button
-          onClick={() => setPage(page - 1)}
-          className="cursor-pointer bg-red-500 text-white px-5 py-1 font-bold hover:bg-red-700"
-        >
-          Privious
-        </button>
-        <button
-          onClick={() => setPage(page + 1)}
-          className="cursor-pointer bg-green-500 font-bold text-white px-5 py-1 hover:bg-green-700"
-        >
-          Next
-        </button>
-      </div>
+            <div className="flex gap-8 p-5 flex-wrap">
+              {productData.map((d, index) => {
+                return (
+                  <ProductCardAdmin
+                    key={index}
+                    data={d}
+                    refresh={fetchProductData}
+                  />
+                );
+              })}
+            </div>
+
+            <div className="flex py-5 justify-between items-center w-[69vw] ml-5">
+              <button
+                onClick={() => setPage(page - 1)}
+                className="cursor-pointer bg-red-500 text-white px-5 py-1 font-bold hover:bg-red-700"
+              >
+                Privious
+              </button>
+
+              {productData.length > 0 && (
+                <button
+                  onClick={() => setPage(page + 1)}
+                  className="cursor-pointer bg-green-500 font-bold text-white px-5 py-1 hover:bg-green-700"
+                >
+                  Next
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

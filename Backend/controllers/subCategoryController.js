@@ -64,6 +64,16 @@ export const deleteSubCategory = async (req, res) => {
 
     console.log(_id);
 
+    const cheakProduct = await productModel.countDocuments({ category: _id });
+
+    if (cheakProduct > 0) {
+      return res.json({
+        message: "Sub Category is in Used",
+        error: true,
+        success: false,
+      });
+    }
+
     const deleteCate = await subCategoryModel.findByIdAndDelete(_id);
 
     return res.json({

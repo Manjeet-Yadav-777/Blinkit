@@ -102,3 +102,23 @@ export const getProduct = async (req, res) => {
     });
   }
 };
+
+export const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    const deleteProduct = await productModel.findByIdAndDelete({ _id: id });
+
+    return res.json({
+      message: "Product Deleted",
+      success: true,
+      error: false,
+    });
+  } catch (error) {
+    return res.json({
+      message: error.message || error,
+      success: false,
+      error: true,
+    });
+  }
+};
