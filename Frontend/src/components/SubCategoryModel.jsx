@@ -179,9 +179,7 @@ const SubCategoryModel = ({ close, fetchSubCategory }) => {
                 });
               }}
             >
-              <option selected value="">
-                Select Category
-              </option>
+              <option value="">Select Category</option>
 
               {allCategory.map((category, index) => {
                 return (

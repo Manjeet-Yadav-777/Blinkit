@@ -15,8 +15,8 @@ import Address from "../pages/Address";
 import Category from "../pages/Category";
 import SubCategory from "../pages/SubCategory";
 import UploadProduct from "../pages/UploadProduct";
-import Product from "../pages/Product";
 import AdminPermission from "../layouts/AdminPermission";
+import ProductAdmin from "../pages/ProductAdmin";
 
 const router = createBrowserRouter([
   {
@@ -107,10 +107,10 @@ const router = createBrowserRouter([
           },
 
           {
-            path: "product",
+            path: "product-admin",
             element: (
               <AdminPermission>
-                <Product />
+                <ProductAdmin />
               </AdminPermission>
             ),
           },

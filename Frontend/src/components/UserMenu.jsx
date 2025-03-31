@@ -100,7 +100,7 @@ const UserMenu = ({ close }) => {
 
         {isAdmin(user.role) && (
           <Link
-            to={"/dashboard/product"}
+            to={"/dashboard/product-admin"}
             className="px-2 py-1 hover:text-white hover:bg-green-600"
           >
             Product
