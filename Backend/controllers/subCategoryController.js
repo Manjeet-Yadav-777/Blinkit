@@ -1,5 +1,6 @@
 import subCategoryModel from "../models/subCategoryModel.js";
 import productModel from "../models/productModel.js";
+import categoryModel from "../models/categoryModel.js";
 
 export const addSubCategory = async (req, res) => {
   try {
@@ -65,15 +66,8 @@ export const deleteSubCategory = async (req, res) => {
 
     // await productModel.deleteMany({ category: _id });
 
-    const cheakProduct = await productModel.countDocuments({ category: _id });
-
-    if (cheakProduct > 0) {
-      return res.json({
-        message: "Sub Category is in Used",
-        error: true,
-        success: false,
-      });
-    }
+    // Check if category is used in products
+    const checkProduct = await productModel.deleteMany({ category: _id });
 
     const deleteCate = await subCategoryModel.findByIdAndDelete(_id);
 

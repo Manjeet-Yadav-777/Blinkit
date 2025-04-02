@@ -95,17 +95,6 @@ export const deleteCategory = async (req, res) => {
     const { _id } = req.body;
 
     // Check if category is used in subcategories
-    const cheakSubCategory = await subCategoryModel.countDocuments({
-      category: _id,
-    });
-
-    if (cheakSubCategory > 0) {
-      return res.json({
-        message: "Category in is use",
-        success: false,
-        error: true,
-      });
-    }
 
     const checkSubCategory = await subCategoryModel.countDocuments({
       category: _id,
@@ -115,7 +104,7 @@ export const deleteCategory = async (req, res) => {
     const checkProduct = await productModel.countDocuments({ category: _id });
 
     if (checkSubCategory > 0 || checkProduct > 0) {
-      return res.status(400).json({
+      return res.json({
         message: "Category is in use and cannot be deleted",
         success: false,
         error: true,

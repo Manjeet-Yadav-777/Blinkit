@@ -8,7 +8,11 @@ import { setUserDetails } from "./store/userSlice";
 import { useDispatch } from "react-redux";
 import SummeryApi from "./common/SummeryApi";
 import Axios from "./utils/Axios";
-import { setAllCategory, setAllSubCategory } from "./store/ProductSlice";
+import {
+  setAllCategory,
+  setAllSubCategory,
+  setLoadingCategory,
+} from "./store/ProductSlice";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -22,6 +26,7 @@ const App = () => {
   const fetchCategory = async () => {
     try {
       setLoading(true);
+      dispatch(setLoadingCategory(true));
 
       const resposne = await Axios({
         ...SummeryApi.getCategory,
@@ -31,12 +36,12 @@ const App = () => {
 
       if (responseData.success) {
         dispatch(setAllCategory(responseData.data));
-        // setCategoryData(responseData.data);
       }
     } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
+      dispatch(setLoadingCategory(false));
     }
   };
 
