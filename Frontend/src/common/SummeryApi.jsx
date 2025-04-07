@@ -87,7 +87,7 @@ const SummeryApi = {
   },
 
   deleteSubCategory: {
-    url: "/api/subcategory/delete", 
+    url: "/api/subcategory/delete",
     method: "delete",
   },
 
@@ -104,6 +104,16 @@ const SummeryApi = {
   deleteProduct: {
     url: "/api/product/delete",
     method: "delete",
+  },
+
+  getProductByCategory: {
+    url: "/api/product/get-product-by-category",
+    method: "post",
+  },
+
+  getProductByCategoryAndSubCategory: {
+    url: "/api/product/get-product-by-category-and-subcategory",
+    method: "post",
   },
 };
 

@@ -4,17 +4,41 @@ import FetchUserDetails from "../utils/FetchUserDetails";
 import { setUserDetails } from "../store/userSlice";
 import Banner from "../assets/banner.jpg";
 import MobileBanner from "../assets/banner-mobile.jpg";
+import { validUrl } from "../utils/ValidUrl";
+import { Link, useNavigate } from "react-router-dom";
+import CategoryProductDisplay from "../components/CategoryProductDisplay";
 
 const Home = () => {
   const dispatch = useDispatch();
   const loadingCategory = useSelector((state) => state.product.loadingCategory);
   const allCategory = useSelector((state) => state.product.allCategory);
+  const allSubCategory = useSelector((state) => state.product.allSubCategory);
 
-  console.log(allCategory);
+  const navigate = useNavigate();
 
   const fetchUser = async () => {
     const userData = await FetchUserDetails();
     dispatch(setUserDetails(userData.data));
+  };
+
+  const handleToRedirectProductListPage = async (id, cat) => {
+    console.log(id, cat);
+
+    const subCategory = allSubCategory.find((sub) => {
+      const filterData = sub.category.some((c) => {
+        return c?._id == id;
+      });
+
+      return filterData ? true : null;
+    });
+
+    const url = `/${validUrl(cat)}-${id}/${validUrl(subCategory?.name)}-${
+      subCategory?._id
+    }`;
+
+    navigate(url);
+
+    console.log(url);
   };
 
   useEffect(() => {
@@ -43,7 +67,13 @@ const Home = () => {
             })
           : allCategory.map((c, index) => {
               return (
-                <div key={index} className="cursor-pointer">
+                <div
+                  key={index}
+                  className="cursor-pointer"
+                  onClick={() =>
+                    handleToRedirectProductListPage(c?._id, c?.name)
+                  }
+                >
                   <img
                     src={c?.image}
                     className="shadow object-scale-down"
@@ -53,6 +83,14 @@ const Home = () => {
               );
             })}
       </div>
+
+      {/* display Category Products */}
+
+      {allCategory.map((c, index) => {
+        return (
+          <CategoryProductDisplay key={index} id={c?._id} name={c?.name} />
+        );
+      })}
     </section>
   );
 };

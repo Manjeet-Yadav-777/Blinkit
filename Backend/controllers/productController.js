@@ -122,3 +122,70 @@ export const deleteProduct = async (req, res) => {
     });
   }
 };
+
+export const getProductByCategory = async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    if (!id) {
+      return res.status(400).json({
+        message: "Provide Category ID",
+        success: false,
+        error: true,
+      });
+    }
+
+    const products = await productModel
+      .find({
+        category: { $in: [id] }, // Make sure id is treated as an array
+      })
+      .limit(15);
+
+    return res.status(200).json({
+      message: "Category Products",
+      success: true,
+      error: false,
+      data: products,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message || "Something went wrong",
+      success: false,
+      error: true,
+    });
+  }
+};
+
+export const getProductByCategoryAndSubCategory = async (req, res) => {
+  try {
+    const { categoryId, subCategoryId } = req.body;
+
+    if (!categoryId || !subCategoryId) {
+      return res.json({
+        message: "Provide Category and subCategory",
+        error: true,
+        success: false,
+      });
+    }
+
+    const query = {
+      category: { $in: categoryId },
+      subCategory: { $in: subCategoryId },
+    };
+
+    const data = await productModel.find(query).sort({ createdAt: -1 });
+
+    return res.json({
+      message: "Product List",
+      data: data,
+      success: true,
+      error: false,
+    });
+  } catch (error) {
+    return res.json({
+      message: error.message || error,
+      success: false,
+      error: true,
+    });
+  }
+};

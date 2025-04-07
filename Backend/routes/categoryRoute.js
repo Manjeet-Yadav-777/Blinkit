@@ -10,7 +10,7 @@ import {
 const categoryRouter = Router();
 
 categoryRouter.post("/add-category", auth, addCategoryModel);
-categoryRouter.get("/get", auth, getCategoryController);
+categoryRouter.get("/get", getCategoryController);
 categoryRouter.put("/update", auth, updateCategory);
 categoryRouter.delete("/delete", auth, deleteCategory);
 
