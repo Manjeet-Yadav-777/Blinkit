@@ -28,7 +28,6 @@ const SubCategory = () => {
 
       if (responseData.success) {
         setData(responseData.data);
-        console.log(data);
       }
     } catch (error) {
       AxiosToastError(error);
@@ -47,7 +46,6 @@ const SubCategory = () => {
 
       const { data: responseData } = response;
 
-      console.log(response);
 
       if (responseData.success) {
         toast.success(responseData.message);
@@ -63,7 +61,6 @@ const SubCategory = () => {
     fetchSubCategory();
   }, []);
 
-  console.log("Subcategory", data);
 
   return (
     <>

@@ -1,5 +1,6 @@
 import Axios from "./Axios";
 import SummeryApi from "../common/SummeryApi";
+import AxiosToastError from "./AxiosToastError";
 
 const FetchUserDetails = async () => {
   try {
@@ -9,7 +10,7 @@ const FetchUserDetails = async () => {
 
     return response.data;
   } catch (error) {
-    console.log(error);
+    AxiosToastError(error);
   }
 };
 

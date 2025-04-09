@@ -22,7 +22,7 @@ const Home = () => {
   };
 
   const handleToRedirectProductListPage = async (id, cat) => {
-    console.log(id, cat);
+
 
     const subCategory = allSubCategory.find((sub) => {
       const filterData = sub.category.some((c) => {
@@ -32,13 +32,12 @@ const Home = () => {
       return filterData ? true : null;
     });
 
+
     const url = `/${validUrl(cat)}-${id}/${validUrl(subCategory?.name)}-${
       subCategory?._id
     }`;
 
     navigate(url);
-
-    console.log(url);
   };
 
   useEffect(() => {

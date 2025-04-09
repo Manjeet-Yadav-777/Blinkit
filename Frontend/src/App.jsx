@@ -13,6 +13,7 @@ import {
   setAllSubCategory,
   setLoadingCategory,
 } from "./store/ProductSlice";
+import AxiosToastError from "./utils/AxiosToastError";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const App = () => {
         dispatch(setAllCategory(responseData.data));
       }
     } catch (error) {
-      console.log(error);
+      AxiosToastError(error);
     } finally {
       setLoading(false);
       dispatch(setLoadingCategory(false));
@@ -60,7 +61,7 @@ const App = () => {
         // setCategoryData(responseData.data);
       }
     } catch (error) {
-      console.log(error);
+      AxiosToastError(error);
     } finally {
       setLoading(false);
     }

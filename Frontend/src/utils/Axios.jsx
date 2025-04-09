@@ -1,5 +1,6 @@
 import axios from "axios";
 import SummeryApi, { baseUrl } from "../common/SummeryApi";
+import AxiosToastError from "./AxiosToastError";
 
 const Axios = axios.create({
   baseURL: baseUrl,
@@ -59,7 +60,7 @@ const refreshAccessToken = async (refreshToken) => {
     localStorage.setItem("accesstoken", accessToken);
     return accessToken;
   } catch (error) {
-    console.log(error);
+    AxiosToastError(error);
   }
 };
 

@@ -115,6 +115,11 @@ const SummeryApi = {
     url: "/api/product/get-product-by-category-and-subcategory",
     method: "post",
   },
+
+  getSingleProductWithId: {
+    url: "/api/product/get-product-by-id",
+    method: "post",
+  },
 };
 
 export default SummeryApi;

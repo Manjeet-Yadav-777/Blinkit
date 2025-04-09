@@ -48,7 +48,7 @@ const Category = () => {
         setCategoryData(responseData.data);
       }
     } catch (error) {
-      console.error(error);
+      AxiosToastError(error);
     } finally {
       setLoading(false);
     }

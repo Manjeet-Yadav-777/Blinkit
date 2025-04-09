@@ -189,3 +189,24 @@ export const getProductByCategoryAndSubCategory = async (req, res) => {
     });
   }
 };
+
+export const getSingleProduct = async (req, res) => {
+  try {
+    const { productId } = req.body;
+
+    const product = await productModel.findOne({ _id: productId });
+
+    return res.json({
+      message: "Product With Id",
+      success: true,
+      error: false,
+      data: product,
+    });
+  } catch (error) {
+    return res.json({
+      message: error.message || error,
+      success: false,
+      error: true,
+    });
+  }
+};

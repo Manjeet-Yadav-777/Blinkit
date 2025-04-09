@@ -12,7 +12,6 @@ const SubCategoryModel = ({ close, fetchSubCategory }) => {
   useEffect(() => {
     const sabhi = allCategory;
   }, []);
-  // console.log(allCategory);
 
   const [data, setData] = useState({
     name: "",
@@ -78,7 +77,6 @@ const SubCategoryModel = ({ close, fetchSubCategory }) => {
     }
   };
 
-  console.log("sub data", data);
 
   return (
     <div className="fixed z-99 scroll-auto w-full top-0 bottom-0 left-0 right-0 bg-neutral-900/70 flex items-center justify-center">

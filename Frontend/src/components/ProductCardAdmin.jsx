@@ -15,14 +15,12 @@ const ProductCardAdmin = ({ data, refresh }) => {
         return;
       }
 
-      console.log("aaya h handle m");
 
       const response = await Axios({
         ...SummeryApi.deleteProduct,
         data: { id: deletPro },
       });
 
-      console.log(response);
 
       if (response.data.success) {
         toast.success(response.data.message);

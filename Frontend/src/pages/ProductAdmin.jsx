@@ -24,7 +24,6 @@ const ProductAdmin = () => {
 
       const { data: responseData } = response;
 
-      console.log(responseData);
 
       if (responseData.success) {
         setProductData(responseData.data);
@@ -41,7 +40,6 @@ const ProductAdmin = () => {
   }, [page]);
 
   const handlePrivious = async () => {
-    console.log(page);
 
     if (page == 0) {
       setPage(1);
@@ -49,7 +47,6 @@ const ProductAdmin = () => {
       setPage(page - 1);
     }
 
-    console.log(page);
 
     if (page == 1) {
       setShowPrivious(false);
@@ -114,12 +111,10 @@ const ProductAdmin = () => {
               {productData.length > 0 && (
                 <button
                   onClick={() => {
-                    console.log(page);
 
                     setPage(page + 1);
                     setShowPrivious(true);
                     window.scrollTo({ top: 0 });
-                    console.log(page);
                   }}
                   className="cursor-pointer rounded bg-green-500 font-bold text-white px-5 py-1 hover:bg-green-700"
                 >

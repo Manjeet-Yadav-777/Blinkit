@@ -63,7 +63,6 @@ const UploadProduct = () => {
 
     setImageLoading(false);
 
-    console.log(file);
   };
 
   const handleDelete = async (index) => {
@@ -126,7 +125,6 @@ const UploadProduct = () => {
     }
   };
 
-  console.log(data);
 
   return (
     <div>
@@ -243,7 +241,6 @@ const UploadProduct = () => {
                   }));
                 }
                 setSelectCategory("");
-                console.log("Updated Data:", data);
               }}
             >
               <option value="">Select Category</option>
@@ -300,7 +297,6 @@ const UploadProduct = () => {
                   }));
                 }
                 setSelectSubCategory("");
-                console.log("Updated Data:", data);
               }}
             >
               <option value="">Select Sub Category</option>

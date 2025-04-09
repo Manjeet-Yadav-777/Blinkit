@@ -13,7 +13,6 @@ const ProductListPage = () => {
   const [displaySubCategory, setDisplaySubCategory] = useState([]);
 
   const allSubCategory = useSelector((state) => state.product.allSubCategory);
-  console.log(allSubCategory);
 
   const params = useParams();
 
@@ -99,8 +98,11 @@ const ProductListPage = () => {
 
           <div className="lg:px-5 px-2 py-5 flex flex-wrap gap-3">
             {data.map((product, index) => {
+              const discount = (product.price * product.discount) / 100;
+              product.price = product.price - discount;
               return (
                 <Link
+                  to={`/product/${validUrl(product.name)}-${product._id}`}
                   key={index}
                   className="shadow my-2 bg-white border-gray-50 border flex flex-col justify-between object-scale-down lg:w-48 w-40 p-2 px-3 rounded cursor-pointer"
                 >
