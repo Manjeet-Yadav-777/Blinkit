@@ -210,3 +210,35 @@ export const getSingleProduct = async (req, res) => {
     });
   }
 };
+
+export const searchProduct = async (req, res) => {
+  try {
+    let { search } = req.body;
+
+    const query = search
+      ? {
+          $text: {
+            $search: search,
+          },
+        }
+      : {};
+
+    const data = await productModel
+      .find(query)
+      .sort({ createdAt: -1 })
+      .populate("category subCategory");
+
+    res.json({
+      message: "Searched Products",
+      error: false,
+      success: true,
+      data: data,
+    });
+  } catch (error) {
+    return res.json({
+      message: error.message || error,
+      success: false,
+      error: true,
+    });
+  }
+};

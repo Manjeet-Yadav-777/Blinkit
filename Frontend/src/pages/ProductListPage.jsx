@@ -6,6 +6,7 @@ import SummeryApi from "../common/SummeryApi";
 import Loading from "../components/Loading";
 import { useSelector } from "react-redux";
 import { validUrl } from "../utils/ValidUrl";
+import CardProduct from "../components/CardProduct";
 const ProductListPage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -98,42 +99,7 @@ const ProductListPage = () => {
 
           <div className="lg:px-5 px-2 py-5 flex flex-wrap gap-3">
             {data.map((product, index) => {
-              const discount = (product.price * product.discount) / 100;
-              product.price = product.price - discount;
-              return (
-                <Link
-                  to={`/product/${validUrl(product.name)}-${product._id}`}
-                  key={index}
-                  className="shadow my-2 bg-white border-gray-50 border flex flex-col justify-between object-scale-down lg:w-48 w-40 p-2 px-3 rounded cursor-pointer"
-                >
-                  <div>
-                    <img src={product?.image[0]} alt="" />
-                  </div>
-
-                  <div className=" flex flex-col">
-                    <p className="bg-gray-100  lg:text-[10px] text-xs w-fit px-2 rounded-lg">
-                      30 MINS
-                    </p>
-                    <div className="lg:text-sm text-xs font-semibold my-2 h-12">
-                      <p>{product.name}</p>
-                    </div>
-                  </div>
-
-                  <div className="text-xs text-gray-500 font-semibold">
-                    <p>{product.unit}</p>
-                  </div>
-
-                  <div className="flex justify-between items-center mt-4">
-                    <p className="lg:text-sm text-xs font-bold text-gray-700">
-                      ₹{product.price}
-                    </p>
-
-                    <button className="text-sm border px-3 py-1 lg:px-5 lg:py-2 cursor-pointer border-green-600 text-green-600 rounded-lg bg-green-50 font-bold">
-                      ADD
-                    </button>
-                  </div>
-                </Link>
-              );
+              return <CardProduct product={product} index={index} />;
             })}
           </div>
 

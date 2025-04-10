@@ -22,8 +22,6 @@ const Home = () => {
   };
 
   const handleToRedirectProductListPage = async (id, cat) => {
-
-
     const subCategory = allSubCategory.find((sub) => {
       const filterData = sub.category.some((c) => {
         return c?._id == id;
@@ -31,7 +29,6 @@ const Home = () => {
 
       return filterData ? true : null;
     });
-
 
     const url = `/${validUrl(cat)}-${id}/${validUrl(subCategory?.name)}-${
       subCategory?._id

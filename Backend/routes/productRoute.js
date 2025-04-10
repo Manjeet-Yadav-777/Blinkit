@@ -6,6 +6,7 @@ import {
   getProductByCategory,
   getProductByCategoryAndSubCategory,
   getSingleProduct,
+  searchProduct,
 } from "../controllers/productController.js";
 import auth from "../middlewares/auth.js";
 
@@ -21,5 +22,7 @@ productRouter.post(
 );
 
 productRouter.post("/get-product-by-id", getSingleProduct);
+
+productRouter.post("/search-product", searchProduct);
 
 export default productRouter;

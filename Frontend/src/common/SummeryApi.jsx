@@ -120,6 +120,15 @@ const SummeryApi = {
     url: "/api/product/get-product-by-id",
     method: "post",
   },
+
+  searchProduct: {
+    url: "/api/product/search-product",
+    method: "post",
+  },
+  addToCart: {
+    url: "/api/cart/add",
+    method: "post",
+  },
 };
 
 export default SummeryApi;

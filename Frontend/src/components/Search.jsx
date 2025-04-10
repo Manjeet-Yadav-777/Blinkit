@@ -8,6 +8,13 @@ const Search = () => {
   const location = useLocation();
   const [isSearchPage, setIsSearchPage] = useState(false);
 
+  const handleOnChange = async (e) => {
+    const value = e.target.value;
+
+    const url = `/search?q=${value}`;
+    navigate(url);
+  };
+
   useEffect(() => {
     const page = location.pathname === "/search";
     setIsSearchPage(page);
@@ -53,6 +60,7 @@ const Search = () => {
               placeholder="Search for Aata Dal and Rice"
               autoFocus
               className="w-full h-full outline-none"
+              onChange={handleOnChange}
             />
           </div>
         )}
