@@ -5,9 +5,11 @@ import AxiosToastError from "../utils/AxiosToastError";
 import Axios from "../utils/Axios";
 import SummeryApi from "../common/SummeryApi";
 import toast from "react-hot-toast";
+import { useGlobalContext } from "../provider/GlobalProvider";
 
 const CardProduct = ({ product }) => {
   const [loading, setLoading] = useState(false);
+  const { fetchCartItems } = useGlobalContext();
 
   const handleAddToCart = async (e) => {
     e.preventDefault();
@@ -25,6 +27,9 @@ const CardProduct = ({ product }) => {
 
       if (responseData.success) {
         toast.success(responseData.message);
+        if (fetchCartItems) {
+          fetchCartItems();
+        }
       } else {
         toast.error(responseData.message);
       }

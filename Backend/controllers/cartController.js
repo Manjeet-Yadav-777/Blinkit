@@ -59,3 +59,28 @@ export const addToCart = async (req, res) => {
     });
   }
 };
+
+export const getCartItems = async (req, res) => {
+  try {
+    const userId = req.userId;
+
+    const cartItems = await cartProductModel
+      .find({
+        userId: userId,
+      })
+      .populate("productId");
+
+    return res.json({
+      message: "Cart Items",
+      data: cartItems,
+      success: true,
+      error: false,
+    });
+  } catch (error) {
+    return res.json({
+      message: error.message || error,
+      success: false,
+      error: true,
+    });
+  }
+};

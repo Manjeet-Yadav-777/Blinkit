@@ -14,6 +14,8 @@ import {
   setLoadingCategory,
 } from "./store/ProductSlice";
 import AxiosToastError from "./utils/AxiosToastError";
+import { handleAddCartItems } from "./store/cartProduct";
+import GlobalProvider from "./provider/GlobalProvider";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -74,14 +76,14 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <GlobalProvider>
       <Header />
       <main className="min-h-[100vh] w-full bg-slate-100">
         <Outlet />
       </main>
       <Footer />
       <Toaster />
-    </>
+    </GlobalProvider>
   );
 };
 
