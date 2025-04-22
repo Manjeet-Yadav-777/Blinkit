@@ -84,3 +84,74 @@ export const getCartItems = async (req, res) => {
     });
   }
 };
+
+export const updateCart = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const { _id, qty } = req.body;
+
+    if (!_id || !qty) {
+      return res.json({
+        message: "Provide Product",
+        success: false,
+        error: true,
+      });
+    }
+
+    const updateCartItems = await cartProductModel.updateOne(
+      {
+        _id: _id,
+        userId: userId,
+      },
+      {
+        quantity: qty,
+      }
+    );
+
+    return res.json({
+      message: "Item added",
+      success: true,
+      error: false,
+    });
+  } catch (error) {
+    return res.json({
+      message: error.message || error,
+      success: false,
+      error: true,
+    });
+  }
+};
+
+export const deleteCart = async (req, res) => {
+  try {
+    const userId = req.userId;
+
+    const { _id } = req.body;
+
+    if (!_id) {
+      return res.josn({
+        message: "Product Not Found",
+        success: false,
+        error: true,
+      });
+    }
+
+    const deleteCartItem = await cartProductModel.deleteOne({
+      _id: _id,
+      userId: userId,
+    });
+
+    return res.json({
+      message: "Item Removed",
+      success: true,
+      error: false,
+      data: deleteCartItem,
+    });
+  } catch (error) {
+    return res.json({
+      message: error.message || error,
+      success: false,
+      error: true,
+    });
+  }
+};

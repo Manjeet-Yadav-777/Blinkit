@@ -1,44 +1,11 @@
 import React, { useState } from "react";
 import { validUrl } from "../utils/ValidUrl";
 import { Link } from "react-router-dom";
-import AxiosToastError from "../utils/AxiosToastError";
-import Axios from "../utils/Axios";
-import SummeryApi from "../common/SummeryApi";
-import toast from "react-hot-toast";
-import { useGlobalContext } from "../provider/GlobalProvider";
+import AddToCartButton from "./AddToCartButton";
 
 const CardProduct = ({ product }) => {
-  const [loading, setLoading] = useState(false);
-  const { fetchCartItems } = useGlobalContext();
+  const increaseQty = async () => {};
 
-  const handleAddToCart = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    try {
-      setLoading(true);
-      const response = await Axios({
-        ...SummeryApi.addToCart,
-        data: {
-          productId: product?._id,
-        },
-      });
-
-      const { data: responseData } = response;
-
-      if (responseData.success) {
-        toast.success(responseData.message);
-        if (fetchCartItems) {
-          fetchCartItems();
-        }
-      } else {
-        toast.error(responseData.message);
-      }
-    } catch (error) {
-      AxiosToastError(error);
-    } finally {
-      setLoading(false);
-    }
-  };
   return (
     <Link
       to={`/product/${validUrl(product.name)}-${product._id}`}
@@ -62,12 +29,7 @@ const CardProduct = ({ product }) => {
       <div className="flex justify-between items-center mt-4">
         <p className="text-sm font-bold text-gray-700">₹{product.price}</p>
 
-        <button
-          onClick={handleAddToCart}
-          className="text-sm border px-5 py-2 cursor-pointer border-green-600 text-green-600 rounded-lg bg-green-50 font-bold"
-        >
-          ADD
-        </button>
+        <AddToCartButton product={product} />
       </div>
     </Link>
   );
