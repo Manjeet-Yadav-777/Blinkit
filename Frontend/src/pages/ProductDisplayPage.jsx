@@ -4,6 +4,7 @@ import AxiosToastError from "../utils/AxiosToastError";
 import Axios from "../utils/Axios";
 import SummeryApi from "../common/SummeryApi";
 import Loading from "../components/Loading";
+import AddToCartButtonDispley from "../components/AddToCartButtonDispley";
 
 const ProductDisplayPage = () => {
   const params = useParams();
@@ -97,9 +98,9 @@ const ProductDisplayPage = () => {
                 OUT OF STOCK
               </button>
             ) : (
-              <button className="bg-green-500 text-white font-semibold rounded mt-5 px-10 py-3 hover:bg-green-600 cursor-pointer">
-                ADD TO CART
-              </button>
+              <div className="mt-10 w-fit">
+                <AddToCartButtonDispley product={product} />
+              </div>
             )}
           </div>
         </div>

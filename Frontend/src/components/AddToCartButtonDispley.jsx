@@ -8,8 +8,7 @@ import Loading from "./Loading";
 import { useSelector } from "react-redux";
 import { IoMdAdd } from "react-icons/io";
 import { RiSubtractFill } from "react-icons/ri";
-
-const AddToCartButton = ({ product }) => {
+const AddToCartButtonDispley = ({ product }) => {
   const [loading, setLoading] = useState(false);
   const { fetchCartItems, updateCartItems, deleteCartItem } =
     useGlobalContext();
@@ -82,23 +81,23 @@ const AddToCartButton = ({ product }) => {
   };
 
   return isAvailable ? (
-    <div className="flex bg-green-700 text-white px-2 gap-2 rounded py-2 items-center">
-      <button onClick={increaseQty} className="cursor-pointer">
+    <div className="flex bg-green-700 text-white px-10 py-3 gap-5 rounded items-center">
+      <button onClick={increaseQty} className="cursor-pointer font-semibold">
         <IoMdAdd />
       </button>
       <p className="text-sm">{qty}</p>
-      <button onClick={decreaseQty} className="cursor-pointer">
+      <button onClick={decreaseQty} className="cursor-pointer font-semibold">
         <RiSubtractFill />
       </button>
     </div>
   ) : (
     <button
       onClick={handleAddToCart}
-      className="text-sm border px-5 py-2 cursor-pointer border-green-600 text-green-600 rounded-lg bg-green-50 font-bold"
+      className="text-sm border px-10 py-3 cursor-pointer border-green-600 text-green-600 rounded-lg bg-green-50 font-bold"
     >
-      {loading ? <Loading /> : "ADD"}
+      {loading ? <Loading /> : "ADD TO CART"}
     </button>
   );
 };
 
-export default AddToCartButton;
+export default AddToCartButtonDispley;

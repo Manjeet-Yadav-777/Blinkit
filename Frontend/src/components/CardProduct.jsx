@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import AddToCartButton from "./AddToCartButton";
 
 const CardProduct = ({ product }) => {
-  const increaseQty = async () => {};
 
   return (
     <Link
