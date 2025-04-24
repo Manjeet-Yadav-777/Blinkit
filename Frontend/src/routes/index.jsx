@@ -19,6 +19,7 @@ import AdminPermission from "../layouts/AdminPermission";
 import ProductAdmin from "../pages/ProductAdmin";
 import ProductListPage from "../pages/ProductListPage";
 import ProductDisplayPage from "../pages/ProductDisplayPage";
+import CartMobileShow from "../components/CartMobileShow";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
         path: "",
         element: <Home />,
       },
+
       {
         path: "search",
         element: <SearchPage />,
@@ -58,10 +60,12 @@ const router = createBrowserRouter([
         path: "reset-password",
         element: <ResetPassword />,
       },
+
       {
         path: "user",
         element: <UserMobileMenu />,
       },
+
       {
         path: "dashboard",
         element: <DashBord />,
@@ -132,6 +136,11 @@ const router = createBrowserRouter([
       {
         path: "product/:product",
         element: <ProductDisplayPage />,
+      },
+
+      {
+        path: "cart",
+        element: <CartMobileShow />,
       },
     ],
   },

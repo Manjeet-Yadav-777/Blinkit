@@ -1,10 +1,10 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SummeryApi from "../common/SummeryApi";
 import { handleAddCartItems } from "../store/cartProduct";
 import Axios from "../utils/Axios";
 import AxiosToastError from "../utils/AxiosToastError";
 
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const GlobalContext = createContext(null);
@@ -13,6 +13,10 @@ export const useGlobalContext = () => useContext(GlobalContext);
 
 const GlobalProvider = ({ children }) => {
   const dispatch = useDispatch();
+  const cartItem = useSelector((state) => state.cartItem.cart);
+
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalQty, setTotalQty] = useState(0);
 
   const fetchCartItems = async () => {
     try {
@@ -75,12 +79,28 @@ const GlobalProvider = ({ children }) => {
   useEffect(() => {
     fetchCartItems();
   }, []);
+
+  useEffect(() => {
+    const qty = cartItem.reduce((prev, curr) => {
+      return prev + curr.quantity;
+    }, 0);
+
+    setTotalQty(qty);
+
+    const tPrice = cartItem.reduce((prev, curr) => {
+      return prev + curr.productId.price * curr.quantity;
+    }, 0);
+
+    setTotalPrice(tPrice);
+  }, [cartItem]);
   return (
     <GlobalContext.Provider
       value={{
         fetchCartItems,
         updateCartItems,
         deleteCartItem,
+        totalPrice,
+        totalQty,
       }}
     >
       {children}

@@ -5,6 +5,7 @@ import Axios from "../utils/Axios";
 import SummeryApi from "../common/SummeryApi";
 import Loading from "../components/Loading";
 import AddToCartButtonDispley from "../components/AddToCartButtonDispley";
+import CartMobileLink from "../components/CartMobileLink";
 
 const ProductDisplayPage = () => {
   const params = useParams();
@@ -105,6 +106,8 @@ const ProductDisplayPage = () => {
           </div>
         </div>
       )}
+
+      <CartMobileLink />
     </section>
   );
 };

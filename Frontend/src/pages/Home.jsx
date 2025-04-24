@@ -7,6 +7,7 @@ import MobileBanner from "../assets/banner-mobile.jpg";
 import { validUrl } from "../utils/ValidUrl";
 import { Link, useNavigate } from "react-router-dom";
 import CategoryProductDisplay from "../components/CategoryProductDisplay";
+import CartMobileLink from "../components/CartMobileLink";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -87,6 +88,8 @@ const Home = () => {
           <CategoryProductDisplay key={index} id={c?._id} name={c?.name} />
         );
       })}
+
+      <CartMobileLink />
     </section>
   );
 };

@@ -7,6 +7,7 @@ import Loading from "../components/Loading";
 import { useSelector } from "react-redux";
 import { validUrl } from "../utils/ValidUrl";
 import CardProduct from "../components/CardProduct";
+import CartMobileLink from "../components/CartMobileLink";
 const ProductListPage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -106,6 +107,8 @@ const ProductListPage = () => {
           <div>{loading && <Loading />}</div>
         </div>
       </div>
+
+      <CartMobileLink />
     </section>
   );
 };

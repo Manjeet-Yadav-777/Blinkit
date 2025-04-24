@@ -14,7 +14,6 @@ import {
   setLoadingCategory,
 } from "./store/ProductSlice";
 import AxiosToastError from "./utils/AxiosToastError";
-import { handleAddCartItems } from "./store/cartProduct";
 import GlobalProvider from "./provider/GlobalProvider";
 
 const App = () => {
@@ -83,6 +82,7 @@ const App = () => {
       </main>
       <Footer />
       <Toaster />
+
     </GlobalProvider>
   );
 };

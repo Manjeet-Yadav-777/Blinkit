@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Search from "./Search";
 import { Link, useNavigate } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
@@ -6,14 +6,18 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import UserMenu from "./userMenu";
+import { useGlobalContext } from "../provider/GlobalProvider";
+import CartItemShow from "./CartItemShow";
 
 const Header = () => {
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const navigate = useNavigate();
   const cartItem = useSelector((state) => state.cartItem.cart);
+  const { totalPrice, totalQty } = useGlobalContext();
+  const [cartOpen, setCartOpen] = useState(false);
 
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [totalQty, setTotalQty] = useState(0);
+  // const [totalPrice, setTotalPrice] = useState(0);
+  // const [totalQty, setTotalQty] = useState(0);
 
   const handleClose = async () => {
     setOpenUserMenu(false);
@@ -30,19 +34,19 @@ const Header = () => {
     navigate("/user");
   };
 
-  useEffect(() => {
-    const qty = cartItem.reduce((prev, curr) => {
-      return prev + curr.quantity;
-    }, 0);
+  // useEffect(() => {
+  //   const qty = cartItem.reduce((prev, curr) => {
+  //     return prev + curr.quantity;
+  //   }, 0);
 
-    setTotalQty(qty);
+  //   setTotalQty(qty);
 
-    const tPrice = cartItem.reduce((prev, curr) => {
-      return prev + curr.productId.price * curr.quantity;
-    }, 0);
+  //   const tPrice = cartItem.reduce((prev, curr) => {
+  //     return prev + curr.productId.price * curr.quantity;
+  //   }, 0);
 
-    setTotalPrice(tPrice);
-  }, [cartItem]);
+  //   setTotalPrice(tPrice);
+  // }, [cartItem]);
 
   return (
     <header className="lg:h-20 mx-4 lg:mx-0 lg:shadow-sm lg:sticky bg-white z-10 lg:top-0 flex lg:flex-row flex-col justify-between py-3 items-center">
@@ -92,7 +96,10 @@ const Header = () => {
               </Link>
             )}
 
-            <div className="flex justify-center items-center gap-3 bg-green-900 cursor-pointer px-5 py-3 rounded-md">
+            <button
+              onClick={() => setCartOpen(true)}
+              className="flex justify-center items-center gap-3 bg-green-900 cursor-pointer px-5 py-3 rounded-md"
+            >
               <TiShoppingCart size={22} color="white" />
               {cartItem[0] ? (
                 <p className="text-xs font-semibold text-white">
@@ -101,7 +108,7 @@ const Header = () => {
               ) : (
                 <p className="text-md font-semibold text-white">My Cart</p>
               )}
-            </div>
+            </button>
           </div>
         </div>
 
@@ -113,6 +120,8 @@ const Header = () => {
       <div className="lg:hidden mobile-search block search mt-5 w-full">
         <Search />
       </div>
+
+      {cartOpen && <CartItemShow close={() => setCartOpen(false)} />}
     </header>
   );
 };
