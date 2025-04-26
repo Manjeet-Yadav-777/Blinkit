@@ -20,6 +20,7 @@ import ProductAdmin from "../pages/ProductAdmin";
 import ProductListPage from "../pages/ProductListPage";
 import ProductDisplayPage from "../pages/ProductDisplayPage";
 import CartMobileShow from "../components/CartMobileShow";
+import SelectAddress from "../pages/SelectAddress";
 
 const router = createBrowserRouter([
   {
@@ -141,6 +142,11 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <CartMobileShow />,
+      },
+
+      {
+        path: "address",
+        element: <SelectAddress />,
       },
     ],
   },

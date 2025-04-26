@@ -114,9 +114,13 @@ const CartItemShow = ({ close }) => {
               <div className="bg-green-700 rounded flex justify-between items-center px-5 py-4 text-neutral-50">
                 <div className="font-bold">₹ {totalPrice}</div>
 
-                <button className="font-semibold flex justify-center items-center gap-1 cursor-pointer">
+                <Link
+                  to={"/address"}
+                  onClick={() => close()}
+                  className="font-semibold flex justify-center items-center gap-1 cursor-pointer"
+                >
                   PROCEED <GoTriangleRight size={18} />
-                </button>
+                </Link>
               </div>
             </div>
           </div>
