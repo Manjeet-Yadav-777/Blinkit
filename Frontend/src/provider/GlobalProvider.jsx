@@ -68,7 +68,7 @@ const GlobalProvider = ({ children }) => {
       const { data: responseData } = response;
 
       if (responseData.success) {
-        toast.success(responseData.message);
+        toast.success("Item Removed");
         fetchCartItems();
       }
     } catch (error) {

@@ -9,7 +9,7 @@ import AxiosToastError from "../utils/AxiosToastError";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import isAdmin from "../utils/isAdmin";
 
-const UserMenu = ({ close }) => {
+const UserMenu = ({ close, fetchCartItems }) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,9 +28,9 @@ const UserMenu = ({ close }) => {
         localStorage.clear();
 
         toast.success(response.data.message);
-
         navigate("/");
       }
+      fetchCartItems();
     } catch (error) {
       AxiosToastError(error);
     }

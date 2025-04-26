@@ -109,7 +109,7 @@ export const updateCart = async (req, res) => {
     );
 
     return res.json({
-      message: "Item added",
+      message: "Quantity Updated",
       success: true,
       error: false,
     });

@@ -92,7 +92,7 @@ const CartItemShow = ({ close }) => {
 
                 <div className="flex justify-between items-center px-3 mt-3">
                   <h2 className="font-semibold text-gray-500">Grand Total</h2>
-                  <p className="font-bold text-green-600">{totalPrice}</p>
+                  <p className="font-bold text-green-600">₹ {totalPrice}</p>
                 </div>
               </div>
 

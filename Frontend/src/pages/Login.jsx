@@ -4,9 +4,11 @@ import SummeryApi from "../common/SummeryApi";
 import AxiosToastError from "../utils/AxiosToastError";
 import toast from "react-hot-toast";
 import Axios from "../utils/Axios";
+import GlobalProvider, { useGlobalContext } from "../provider/GlobalProvider";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { fetchCartItems } = useGlobalContext();
 
   const [data, setData] = useState({
     email: "",
@@ -48,6 +50,7 @@ const Login = () => {
         });
 
         navigate("/");
+        fetchCartItems();
       }
     } catch (error) {
       AxiosToastError(error);

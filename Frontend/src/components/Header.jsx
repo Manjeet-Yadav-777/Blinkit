@@ -13,7 +13,7 @@ const Header = () => {
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const navigate = useNavigate();
   const cartItem = useSelector((state) => state.cartItem.cart);
-  const { totalPrice, totalQty } = useGlobalContext();
+  const { totalPrice, totalQty, fetchCartItems } = useGlobalContext();
   const [cartOpen, setCartOpen] = useState(false);
 
   // const [totalPrice, setTotalPrice] = useState(0);
@@ -82,7 +82,10 @@ const Header = () => {
                 {openUserMenu && (
                   <div className="absolute right-40 top-14">
                     <div className="bg-white rounded p-4 min-w-52 lg:shadow-lg">
-                      <UserMenu close={handleClose} />
+                      <UserMenu
+                        fetchCartItems={fetchCartItems}
+                        close={handleClose}
+                      />
                     </div>
                   </div>
                 )}
