@@ -13,6 +13,7 @@ export const addAddress = async (req, res) => {
       pincode,
       country,
       mobile,
+      userId,
     };
 
     const addressData = new addressModel(payload);

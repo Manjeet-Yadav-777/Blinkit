@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { IoClose } from "react-icons/io5";
+import AxiosToastError from "../utils/AxiosToastError";
+import Axios from "../utils/Axios";
+import SummeryApi from "../common/SummeryApi";
+import toast from "react-hot-toast";
 
 const AddressModel = ({ close }) => {
   const [data, setData] = useState({
@@ -23,6 +27,32 @@ const AddressModel = ({ close }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await Axios({
+        ...SummeryApi.addAddress,
+        data: data,
+      });
+
+      const { data: responseData } = response;
+
+      if (responseData.success) {
+        toast.success(responseData.message);
+
+        setData({
+          address_line: "",
+          city: "",
+          state: "",
+          pincode: "",
+          country: "",
+          mobile: "",
+        });
+
+        close();
+      }
+    } catch (error) {
+      AxiosToastError(error);
+    }
   };
 
   return (
