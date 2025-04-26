@@ -10,8 +10,8 @@ const SelectAddress = () => {
   const [selectAddress, setSelectAddress] = useState(0);
 
   return (
-    <section className="flex flex-col gap-8 lg:flex-row px-10">
-      <div className="w-[60%]">
+    <section className="flex flex-col gap-8 lg:flex-row lg:px-10">
+      <div className="lg:w-[60%]">
         <div className="bg-white p-2 mt-5 rounded">
           {addressList.map((address, index) => {
             return (
@@ -43,15 +43,20 @@ const SelectAddress = () => {
             );
           })}
         </div>
-        <div
-          onClick={() => setAddressOpen(true)}
-          className="w-full border my-5 rounded border-dashed border-green-500 flex justify-center items-center py-5 cursor-pointer"
-        >
-          <h1 className="text-green-500 font-semibold text-xl"> ADD ADDRESS</h1>
+        <div className="mx-3">
+          <div
+            onClick={() => setAddressOpen(true)}
+            className="lg:w-full w-[100%] border my-5 rounded border-dashed border-green-500 flex justify-center items-center py-5 cursor-pointer"
+          >
+            <h1 className="text-green-500 font-semibold text-xl">
+              {" "}
+              ADD ADDRESS
+            </h1>
+          </div>
         </div>
       </div>
 
-      <div className="w-[40%]">
+      <div className="lg:w-[40%] px-3">
         <div className="bg-white w-full rounded px-5 py-3 mt-5">
           <h1 className="text-lg font-semibold text-gray-700">Bill Details</h1>
           <div className="flex justify-between items-center px-3 mt-3">

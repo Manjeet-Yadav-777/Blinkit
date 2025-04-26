@@ -116,7 +116,11 @@ const CartItemShow = ({ close }) => {
 
                 <Link
                   to={"/address"}
-                  onClick={() => close()}
+                  onClick={() => {
+                    if (close) {
+                      close();
+                    }
+                  }}
                   className="font-semibold flex justify-center items-center gap-1 cursor-pointer"
                 >
                   PROCEED <GoTriangleRight size={18} />
