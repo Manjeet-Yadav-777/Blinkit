@@ -6,6 +6,7 @@ import AxiosToastError from "../utils/AxiosToastError";
 
 import { createContext, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { handleAddAddress } from "../store/addressSlice";
 
 const GlobalContext = createContext(null);
 
@@ -76,8 +77,25 @@ const GlobalProvider = ({ children }) => {
     }
   };
 
+  const fetchAddress = async () => {
+    try {
+      const response = await Axios({
+        ...SummeryApi.getAddresses,
+      });
+
+      const { data: responseData } = response;
+
+      if (responseData.success) {
+        dispatch(handleAddAddress(responseData.data));
+      }
+    } catch (error) {
+      AxiosToastError(error);
+    }
+  };
+
   useEffect(() => {
     fetchCartItems();
+    fetchAddress();
   }, []);
 
   useEffect(() => {
@@ -101,6 +119,7 @@ const GlobalProvider = ({ children }) => {
         deleteCartItem,
         totalPrice,
         totalQty,
+        fetchAddress,
       }}
     >
       {children}

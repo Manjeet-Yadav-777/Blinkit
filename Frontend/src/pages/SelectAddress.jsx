@@ -1,16 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../provider/GlobalProvider";
 import AddressModel from "../components/AddressModel";
+import { useSelector } from "react-redux";
 
 const SelectAddress = () => {
+  const addressList = useSelector((state) => state.addresses.addressList);
   const { totalPrice, totalQty } = useGlobalContext();
   const [addressOpen, setAddressOpen] = useState(false);
+  const [selectAddress, setSelectAddress] = useState(0);
+
   return (
     <section className="flex flex-col gap-8 lg:flex-row px-10">
       <div className="w-[60%]">
+        <div className="bg-white p-2 mt-5 rounded">
+          {addressList.map((address, index) => {
+            return (
+              <label htmlFor={"address" + index}>
+                <div
+                  key={index}
+                  className="border rounded px-5 flex gap-10 py-2 my-5 border-gray-400 hover:bg-blue-50 cursor-pointer"
+                >
+                  <div>
+                    <input
+                      id={"address" + index}
+                      type="radio"
+                      onClick={(e) => setSelectAddress(e.target.value)}
+                      name="address"
+                      value={index}
+                    />
+                  </div>
+                  <div>
+                    <p>{address.address_line}</p>
+                    <p>{address.city}</p>
+                    <p>{address.state}</p>
+                    <p>
+                      {address.country} - {address.pincode}
+                    </p>
+                    <p>{address.mobile}</p>
+                  </div>
+                </div>
+              </label>
+            );
+          })}
+        </div>
         <div
           onClick={() => setAddressOpen(true)}
-          className="w-full border my-5 rounded border-green-500 flex justify-center items-center py-5 cursor-pointer"
+          className="w-full border my-5 rounded border-dashed border-green-500 flex justify-center items-center py-5 cursor-pointer"
         >
           <h1 className="text-green-500 font-semibold text-xl"> ADD ADDRESS</h1>
         </div>

@@ -4,6 +4,7 @@ import AxiosToastError from "../utils/AxiosToastError";
 import Axios from "../utils/Axios";
 import SummeryApi from "../common/SummeryApi";
 import toast from "react-hot-toast";
+import { useGlobalContext } from "../provider/GlobalProvider";
 
 const AddressModel = ({ close }) => {
   const [data, setData] = useState({
@@ -14,6 +15,8 @@ const AddressModel = ({ close }) => {
     country: "",
     mobile: "",
   });
+
+  const { fetchAddress } = useGlobalContext();
 
   const onChangeHandler = async (e) => {
     const { name, value } = e.target;
@@ -49,6 +52,7 @@ const AddressModel = ({ close }) => {
         });
 
         close();
+        fetchAddress();
       }
     } catch (error) {
       AxiosToastError(error);

@@ -150,6 +150,16 @@ const SummeryApi = {
     url: "/api/address/add",
     method: "post",
   },
+
+  getAddresses: {
+    url: "/api/address/get",
+    method: "get",
+  },
+
+  deleteAddress: {
+    url: "/api/address/delete",
+    method: "delete",
+  },
 };
 
 export default SummeryApi;
