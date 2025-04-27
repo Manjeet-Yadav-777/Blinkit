@@ -5,7 +5,7 @@ import { TiShoppingCart } from "react-icons/ti";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
-import UserMenu from "./userMenu.jsx";
+import UserMenu from "./userMenu";
 import { useGlobalContext } from "../provider/GlobalProvider";
 import CartItemShow from "./CartItemShow";
 
