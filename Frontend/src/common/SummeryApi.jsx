@@ -1,4 +1,4 @@
-export const baseUrl = "http://localhost:5000";
+export const baseUrl = "https://blinkit-ngvo.onrender.com";
 
 const SummeryApi = {
   register: {
