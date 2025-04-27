@@ -1,5 +1,5 @@
 import React from "react";
-import UserMenu from "../components/userMenu";
+import UserMenu from "../components/UserMenu";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
