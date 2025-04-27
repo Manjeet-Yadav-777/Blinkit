@@ -15,6 +15,7 @@ const orderSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: "product",
     },
+    
     product_details: {
       name: String,
       image: Array,
@@ -23,10 +24,12 @@ const orderSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+
     payment_status: {
       type: String,
-      default: "",
+      default: "Pending",
     },
+    
     delivery_address: {
       type: mongoose.Schema.ObjectId,
       ref: "address",

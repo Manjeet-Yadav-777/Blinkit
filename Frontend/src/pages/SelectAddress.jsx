@@ -2,12 +2,50 @@ import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../provider/GlobalProvider";
 import AddressModel from "../components/AddressModel";
 import { useSelector } from "react-redux";
+import AxiosToastError from "../utils/AxiosToastError";
+import Axios from "../utils/Axios";
+import SummeryApi from "../common/SummeryApi";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const SelectAddress = () => {
   const addressList = useSelector((state) => state.addresses.addressList);
   const { totalPrice, totalQty } = useGlobalContext();
   const [addressOpen, setAddressOpen] = useState(false);
   const [selectAddress, setSelectAddress] = useState(0);
+
+  const cartItemList = useSelector((state) => state.cartItem.cart);
+  const navigate = useNavigate();
+  const { fetchAddress, fetchCartItems } = useGlobalContext();
+
+  const handleCashOnDelivery = async () => {
+    try {
+      const response = await Axios({
+        ...SummeryApi.cashOnDelivery,
+
+        data: {
+          list_items: cartItemList,
+          addressId: addressList[selectAddress]._id,
+          totalAmt: totalPrice,
+          subTotalAmt: totalPrice,
+        },
+      });
+
+      const { data: responseData } = response;
+
+      if (responseData.success) {
+        toast.success(responseData.message);
+        fetchCartItems();
+        navigate("/cheakout");
+      }
+    } catch (error) {
+      AxiosToastError(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAddress();
+  }, []);
 
   return (
     <section className="flex flex-col gap-8 lg:flex-row lg:px-10">
@@ -77,6 +115,18 @@ const SelectAddress = () => {
           <div className="flex justify-between items-center px-3 mt-3">
             <h2 className="font-semibold text-gray-500">Grand Total</h2>
             <p className="font-bold text-green-600">₹ {totalPrice}</p>
+          </div>
+
+          <div className="px-3 flex flex-col mt-8 justify-center items-center gap-5">
+            <button
+              onClick={handleCashOnDelivery}
+              className="bg-green-500 rounded hover:bg-green-700 cursor-pointer w-full py-2 text-white font-semibold"
+            >
+              CASH ON DELIVERY
+            </button>
+            <button className="border w-full rounded py-2 text-green-500 font-semibold cursor-pointer hover:bg-green-500 hover:text-white">
+              PAY ONLINE
+            </button>
           </div>
         </div>
       </div>

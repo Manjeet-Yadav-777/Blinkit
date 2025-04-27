@@ -160,6 +160,11 @@ const SummeryApi = {
     url: "/api/address/delete",
     method: "delete",
   },
+
+  cashOnDelivery: {
+    url: "/api/order/cashondelivery",
+    method: "post",
+  },
 };
 
 export default SummeryApi;

@@ -21,6 +21,7 @@ import ProductListPage from "../pages/ProductListPage";
 import ProductDisplayPage from "../pages/ProductDisplayPage";
 import CartMobileShow from "../components/CartMobileShow";
 import SelectAddress from "../pages/SelectAddress";
+import Cheakout from "../pages/Cheakout";
 
 const router = createBrowserRouter([
   {
@@ -147,6 +148,11 @@ const router = createBrowserRouter([
       {
         path: "address",
         element: <SelectAddress />,
+      },
+
+      {
+        path: "cheakout",
+        element: <Cheakout />,
       },
     ],
   },
