@@ -14,7 +14,6 @@ const AddToCartButton = ({ product }) => {
   const { fetchCartItems, updateCartItems, deleteCartItem } =
     useGlobalContext();
   const cartItem = useSelector((state) => state.cartItem.cart);
-  //   console.log(cartItem);
   const [isAvailable, setIsAvailable] = useState(false);
   const [qty, setQty] = useState(0);
   const [cartDetails, setCartDetails] = useState();
@@ -43,7 +42,6 @@ const AddToCartButton = ({ product }) => {
       }
     } catch (error) {
       AxiosToastError(error);
-      console.log(error);
     } finally {
       setLoading(false);
     }

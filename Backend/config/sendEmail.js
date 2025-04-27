@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 if (!process.env.RESEND_API) {
-  console.log("Provide RESEND_API in side the .env file");
+  process.exit(1);
 }
 
 const resend = new Resend(process.env.RESEND_API);
@@ -18,12 +18,12 @@ const sendEmail = async ({ sendTo, subject, html }) => {
     });
 
     if (error) {
-      return console.error({ error });
+      process.exit(1);
     }
 
     return data;
   } catch (error) {
-    console.log(error);
+    process.exit(1);
   }
 };
 

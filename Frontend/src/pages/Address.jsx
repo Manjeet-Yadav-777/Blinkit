@@ -25,7 +25,6 @@ const Address = () => {
       });
 
       const { data: responseData } = response;
-      console.log(responseData);
 
       if (responseData.success) {
         toast.success(responseData.message);

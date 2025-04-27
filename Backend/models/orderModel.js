@@ -11,25 +11,26 @@ const orderSchema = new mongoose.Schema(
       required: [true, "Provide orderId"],
       unique: true,
     },
-    productId: {
-      type: mongoose.Schema.ObjectId,
-      ref: "product",
-    },
-    
-    product_details: {
-      name: String,
-      image: Array,
-    },
-    paymentId: {
-      type: String,
-      default: "",
-    },
-
+    products: [
+      {
+        productId: {
+          type: mongoose.Schema.ObjectId,
+          ref: "product",
+        },
+        product_details: {
+          name: String,
+          image: Array,
+        },
+        quantity: {
+          type: Number,
+          required: true, // Required because we are saving quantity
+        },
+      },
+    ],
     payment_status: {
       type: String,
       default: "Pending",
     },
-    
     delivery_address: {
       type: mongoose.Schema.ObjectId,
       ref: "address",

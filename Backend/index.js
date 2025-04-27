@@ -44,7 +44,5 @@ app.use("/api/address", addressRouter);
 app.use("/api/order", orderRouter);
 
 connectDB().then(() => {
-  app.listen(PORT, () => {
-    console.log(`App is listening on : ${PORT}`);
-  });
+  app.listen(PORT, () => {});
 });

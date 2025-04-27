@@ -165,6 +165,10 @@ const SummeryApi = {
     url: "/api/order/cashondelivery",
     method: "post",
   },
+
+  getOrders : {
+    url : "/api/order/getorders"
+  }
 };
 
 export default SummeryApi;

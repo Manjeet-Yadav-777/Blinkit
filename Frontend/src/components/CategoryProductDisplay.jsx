@@ -40,7 +40,6 @@ const CategoryProductDisplay = ({ id, name }) => {
   };
 
   const handleToRedirectProductListPage = async (id, cat) => {
-    console.log(id, cat);
 
     const subCategory = allSubCategory.find((sub) => {
       const filterData = sub.category.some((c) => {
@@ -54,7 +53,6 @@ const CategoryProductDisplay = ({ id, name }) => {
       subCategory?._id
     }`;
 
-    console.log(url);
 
     navigate(url);
   };

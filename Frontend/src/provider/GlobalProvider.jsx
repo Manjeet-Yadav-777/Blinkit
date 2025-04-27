@@ -29,7 +29,6 @@ const GlobalProvider = ({ children }) => {
 
       if (responseData.success) {
         dispatch(handleAddCartItems(responseData.data));
-        // console.log(responseData.data);
       }
     } catch (error) {
       AxiosToastError(error);
