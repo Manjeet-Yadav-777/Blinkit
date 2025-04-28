@@ -17,7 +17,7 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:3000', 'https://your-frontend-url.com'];
+const allowedOrigins = ['http://localhost:5173', 'https://blinkit-frontend-dynz.onrender.com'];
 
 app.use(cors({
   origin: allowedOrigins,
