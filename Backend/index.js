@@ -17,12 +17,13 @@ dotenv.config();
 
 const app = express();
 
-app.use(
-  cors({
-    credentials: true,
-    origin: "https://blinkit-frontend-dynz.onrender.com",
-  })
-);
+const allowedOrigins = ['http://localhost:3000', 'https://your-frontend-url.com'];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,   // agar cookies ya authentication chahiye
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan("dev"));
