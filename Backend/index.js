@@ -20,7 +20,7 @@ const app = express();
 const allowedOrigins = ['http://localhost:5173', 'https://blinkit-frontend-dynz.onrender.com'];
 
 app.use(cors({
-  origin: 'https://blinkit-frontend-dynz.onrender.com',
+  origin: allowedOrigins,
   credentials: true,   // agar cookies ya authentication chahiye
 }));
 
