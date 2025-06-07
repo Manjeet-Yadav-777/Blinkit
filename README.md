@@ -1,6 +1,6 @@
 # Blinkit Clone - Grocery Delivery Web App
 
-![Blinkit Clone Demo](https://blinkit-frontend-dynz.onrender.com/)
+[Click here to open Blinkit Clone live app](https://blinkit-frontend-dynz.onrender.com/)
 
 ## Overview
 Blinkit Clone is a full-stack grocery delivery web application inspired by Blinkit, designed to provide users a seamless experience to browse, select, and order groceries online with fast and reliable delivery. This project demonstrates my skills in the MERN stack (MongoDB, Express.js, React.js, Node.js) and showcases features like real-time product listing, cart management, user authentication, and order processing.
