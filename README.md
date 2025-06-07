@@ -19,7 +19,7 @@ Blinkit Clone is a full-stack grocery delivery web application inspired by Blink
 - **Backend:** Node.js, Express.js  
 - **Database:** MongoDB (NoSQL)  
 - **Authentication:** JWT (JSON Web Tokens)  
-- **Deployment:** [Your deployment platform e.g. Vercel, Heroku]
+- **Deployment:** Render (frontend & backend)
 
 ## Installation & Setup
 1. Clone the repo:  
